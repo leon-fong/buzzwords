@@ -19,7 +19,9 @@ const go = () => {
     <div
       flex
       flex-col
-      border="~ rounded-2xl gray-200 dark:gray-700" p="x-30 y-20"
+      p="x-30 y-20"
+      bg="white"
+      border="rounded"
     >
       <div flex>
         <Char v-for="item in name" :key="item" :value="item" />
@@ -71,11 +73,11 @@ const go = () => {
 
     <div>
       <button
-        class="m-3 text-sm btn"
+        class="m-3 px-6 text-sm btn bg-[#2aae67]"
         :disabled="!name"
         @click="go"
       >
-        Go
+        生成
       </button>
     </div>
   </div>
