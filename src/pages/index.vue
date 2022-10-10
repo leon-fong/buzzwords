@@ -6,6 +6,21 @@ const go = () => {
   if (name)
     router.push(`/hi/${encodeURIComponent(name)}`)
 }
+
+watch(name, (old, now) => {
+  if (now.length > 5)
+    name = old
+})
+
+const handleRandom = () => {
+  name = '只因飞狗跳'
+  desc = '这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述这是一段描述这是。'
+}
+
+const reset = () => {
+  name = ''
+  desc = ''
+}
 </script>
 
 <template>
@@ -19,19 +34,19 @@ const go = () => {
     <div
       flex
       flex-col
-      p="x-30 y-20"
+      p="x-40 y-20"
       bg="white"
       border="rounded"
     >
       <div flex>
-        <Char v-for="item in name" :key="item" :value="item" />
+        <Char v-for="item in name" :key="item" :value="item" :len="name.length" />
       </div>
 
-      <div mt-10 text="left">
-        <p text-2xl font-bold>
+      <div mt-8 text="left">
+        <p text-xl font-bold>
           释义:
         </p>
-        <p text-xl>
+        <p text-sm mt-3>
           {{ desc }}
         </p>
       </div>
@@ -48,7 +63,7 @@ const go = () => {
       w="400px"
       text="left"
       bg="transparent"
-      border="~ rounded gray-200 dark:gray-700"
+      border="~ rounded gray-200"
       outline="none active:none"
       display="block"
       @keydown.enter="go"
@@ -65,7 +80,7 @@ const go = () => {
       w="400px"
       text="left"
       bg="transparent"
-      border="~ rounded gray-200 dark:gray-700"
+      border="~ rounded gray-200 "
       outline="none active:none"
       display="block"
       @keydown.enter="go"
@@ -74,11 +89,24 @@ const go = () => {
     <div>
       <button
         class="m-3 px-6 text-sm btn bg-[#2aae67]"
-        :disabled="!name"
-        @click="go"
+        @click="handleRandom"
       >
-        生成
+        随机
+      </button>
+      <button
+        class="m-3 px-6 text-sm btn bg-[#2aae67]"
+        :disabled="!name"
+        @click="reset"
+      >
+        清空
       </button>
     </div>
+    <button
+      class="m-3 px-6 text-sm btn bg-[#2aae67]"
+      :disabled="!name"
+      @click="go"
+    >
+      生成
+    </button>
   </div>
 </template>

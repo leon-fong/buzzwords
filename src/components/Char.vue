@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import mi_bg from '~/assets/mi_bg.svg'
-const props = defineProps(['value'])
-const bgStyle = `background-image: url(${mi_bg})`
+const props = defineProps(['value', 'len'])
+const bgStyle = `background-image: url(${mi_bg}); font-size: ${props.len * 10}px`
 </script>
 
 <template>
   <div class="flex-1">
     <div class="wrap">
-      <div class="flex absolute w-full h-full">
+      <div class="flex absolute max-w-full max-h-full w-full h-full">
         <span class="char" :style="bgStyle">{{ props.value }}</span>
       </div>
     </div>
@@ -25,7 +25,6 @@ const bgStyle = `background-image: url(${mi_bg})`
 }
 .char {
   flex: 1;
-  font-size: 50px;
   justify-content: center;
   display: flex;
   align-items: center;
